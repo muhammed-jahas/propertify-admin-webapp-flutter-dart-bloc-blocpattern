@@ -21,6 +21,7 @@ class PropertyBloc extends Bloc<PropertyEvent, PropertyState> {
   FutureOr<void> loadProperties(event, emit) async {
     debugPrint('Start Load Properties');
     emit(PropertyLoadingState());
+    Future.delayed(Duration(seconds: 2));
     final response = await PropertyRepo().getAllProperties();
     if (response.data != null) {
       if (response.data['status'] == 'success') {
@@ -33,7 +34,8 @@ class PropertyBloc extends Bloc<PropertyEvent, PropertyState> {
             .toList()
             .length
             .toString();
-        emit(PropertyLoadSuccessState(properties: properties,soldProperties: soldProperties));
+        emit(PropertyLoadSuccessState(
+            properties: properties, soldProperties: soldProperties));
       } else if (response.appexception != null) {
         emit(PropertyLoadErrorState(exception: response.appexception));
       }
@@ -55,7 +57,8 @@ class PropertyBloc extends Bloc<PropertyEvent, PropertyState> {
         return e;
       }).toList();
       // emit(PropertyApprovedSuccessState());
-      emit(PropertyLoadSuccessState(properties: properties,soldProperties: soldProperties));
+      emit(PropertyLoadSuccessState(
+          properties: properties, soldProperties: soldProperties));
     }
   }
 }

@@ -68,8 +68,8 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                             'Properties',
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Colors.grey),
+                                fontSize: 14,
+                                color: Colors.grey.shade600),
                           ),
                           onTap: () {
                             _selectScreen(0);
@@ -84,8 +84,8 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                             'Agents',
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Colors.grey),
+                                fontSize: 14,
+                                color: Colors.grey.shade600),
                           ),
                           onTap: () {
                             _selectScreen(1);
@@ -100,8 +100,8 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                             'Users',
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Colors.grey),
+                                fontSize: 14,
+                                color: Colors.grey.shade600),
                           ),
                           onTap: () {
                             _selectScreen(2);
@@ -116,8 +116,8 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                             'Settings',
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Colors.grey),
+                                fontSize: 14,
+                                color: Colors.grey.shade600),
                           ),
                           onTap: () {
                             _selectScreen(3);

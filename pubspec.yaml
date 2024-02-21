@@ -35,7 +35,9 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.4
   flutter_svg: ^2.0.9
+  fluttertoast: ^8.2.4
   google_maps_flutter: ^2.5.3
+  google_maps_flutter_web: ^0.5.4+3
   http: ^1.2.1
   image_cropper: ^5.0.1
   image_picker: ^1.0.7
@@ -43,6 +45,7 @@ dependencies:
   path: ^1.9.0
   path_provider: ^2.1.2
   shared_preferences: ^2.2.2
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -128,6 +131,8 @@ flutter:
         - asset: assets/fonts/Gilroy-HeavyItalic.woff
           weight: 900
           style: italic
-  #
+    - family: 'propertifyicon'
+      fonts:
+        - asset: assets/fonts/propertifyicon.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

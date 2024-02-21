@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propertify_webapp/blocs/property_bloc/property_bloc.dart';
 import 'package:propertify_webapp/models/property_model.dart';
+import 'package:propertify_webapp/resources/colors/app_colors.dart';
+import 'package:propertify_webapp/views/property_details_screen.dart';
 
 class Screen1 extends StatelessWidget {
   @override
@@ -12,14 +14,14 @@ class Screen1 extends StatelessWidget {
     return DefaultTabController(
       length: 3, // Number of tabs
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 247, 247, 247),
+        backgroundColor: Color.fromARGB(255, 236, 236, 236),
         body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   BlocBuilder<PropertyBloc, PropertyState>(
                     builder: (context, state) {
@@ -32,32 +34,42 @@ class Screen1 extends StatelessWidget {
                       return Row(
                         children: [
                           dashboardBox(
-                            bgColor: Colors.amber.shade50,
+                            bgColor: AppColors.primaryColor.shade50,
                             boxIcon: Icons.home_max_outlined,
                             title: 'Properties',
                             subTitle: map['Properties'] ?? '',
                           ),
+                          SizedBox(
+                            width: 10,
+                          ),
                           dashboardBox(
-                            bgColor: Colors.amber.shade50,
+                            bgColor: AppColors.primaryColor.shade50,
                             boxIcon: Icons.check,
                             title: 'Sold',
                             subTitle: map['SoldProperties'] ?? '',
-                          ),
-                          dashboardBox(
-                            bgColor: Colors.amber.shade50,
-                            boxIcon: Icons.timelapse_outlined,
-                            title: 'Pending',
-                            subTitle: '08',
                           ),
                         ],
                       );
                     },
                   ),
-                  dashboardBox(
-                    bgColor: Colors.amber.shade50,
-                    boxIcon: Icons.person_outline_outlined,
-                    title: 'Users',
-                    subTitle: '10',
+                  Row(
+                    children: [
+                      dashboardBox(
+                        bgColor: AppColors.primaryColor.shade50,
+                        boxIcon: Icons.timelapse_outlined,
+                        title: 'Pending',
+                        subTitle: '08',
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      dashboardBox(
+                        bgColor: AppColors.primaryColor.shade50,
+                        boxIcon: Icons.person_outline_outlined,
+                        title: 'Users',
+                        subTitle: '10',
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -107,7 +119,6 @@ class Screen1 extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-                          color: Color.fromARGB(255, 238, 238, 238),
                           child: Column(
                             children: [
                               // Add your content for Tab 1 here
@@ -120,8 +131,11 @@ class Screen1 extends StatelessWidget {
                                       current is! PropertyApprovedSuccessState,
                                   builder: (context, state) {
                                     if (state is PropertyLoadingState) {
-                                      return Center(
-                                          child: CircularProgressIndicator());
+                                      return Container(
+                                        height: 500,
+                                        child: Center(
+                                            child: CircularProgressIndicator()),
+                                      );
                                     } else if (state
                                         is PropertyLoadSuccessState) {
                                       return ListView.separated(
@@ -263,7 +277,7 @@ class propertyItem extends StatelessWidget {
             opaque: false,
             pageBuilder: (BuildContext context, _, __) {
               return CustomOverlayScreen(
-                Property: property,
+               property: property,
               );
             },
             transitionsBuilder: (___, animation, ____, child) {
@@ -288,7 +302,7 @@ class propertyItem extends StatelessWidget {
           //   width: 4,
           // ))
         ),
-        height: 50,
+        height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -402,6 +416,11 @@ class propertyItem extends StatelessWidget {
                         ),
                       ],
                     );
+                  } else if (value['isSold']!) {
+                    return statusButton(
+                        label: 'Sold',
+                        bgColor: AppColors.primaryColor,
+                        labelColor: Colors.white);
                   } else if (value['isApproved']!) {
                     return statusButton(
                       bgColor: Colors.green.shade700,
@@ -463,62 +482,62 @@ class statusButton extends StatelessWidget {
   }
 }
 
-class CustomOverlayScreen extends StatelessWidget {
-  final PropertyModel Property;
-  CustomOverlayScreen({required this.Property});
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // Transparent container to capture taps outside the drawer
-        GestureDetector(
-          onTap: () {
-            Navigator.pop(context); // Close the overlay when tapping outside
-          },
-          child: Container(
-            color: Colors.transparent,
-          ),
-        ),
-        // Drawer content
-        Align(
-          alignment: Alignment.centerRight,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.50,
-            child: Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                    ),
-                    child: Text(
-                      Property.propertyName,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                    onTap: () {
-                      // Handle item tap
-                    },
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                    onTap: () {
-                      // Handle item tap
-                    },
-                  ),
-                  // Add more list items as needed
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+// class CustomOverlayScreen extends StatelessWidget {
+//   final PropertyModel Property;
+//   CustomOverlayScreen({required this.Property});
+//   @override
+//   Widget build(BuildContext context) {
+//     return Stack(
+//       children: [
+//         // Transparent container to capture taps outside the drawer
+//         GestureDetector(
+//           onTap: () {
+//             Navigator.pop(context); // Close the overlay when tapping outside
+//           },
+//           child: Container(
+//             color: Colors.transparent,
+//           ),
+//         ),
+//         // Drawer content
+//         Align(
+//           alignment: Alignment.centerRight,
+//           child: SizedBox(
+//             width: MediaQuery.of(context).size.width * 0.50,
+//             child: Drawer(
+//               child: ListView(
+//                 padding: EdgeInsets.zero,
+//                 children: <Widget>[
+//                   DrawerHeader(
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue,
+//                     ),
+//                     child: Text(
+//                       Property.propertyName,
+//                       style: TextStyle(
+//                         color: Colors.white,
+//                         fontSize: 24,
+//                       ),
+//                     ),
+//                   ),
+//                   ListTile(
+//                     title: Text('Item 1'),
+//                     onTap: () {
+//                       // Handle item tap
+//                     },
+//                   ),
+//                   ListTile(
+//                     title: Text('Item 2'),
+//                     onTap: () {
+//                       // Handle item tap
+//                     },
+//                   ),
+//                   // Add more list items as needed
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
