@@ -1,35 +1,39 @@
 class AgentModel {
   String id;
-  String? name;
-  String? email;
-  String? phone;
-  bool? status;
-  String? image;
+  String email;
+  String fullname;
+  String mobNo;
+  bool status;
+  List<String> requests;
 
   AgentModel({
     required this.id,
-    this.name,
-    this.email,
-    this.phone,
-    this.status,
-    this.image,
+    required this.email,
+    required this.fullname,
+    required this.mobNo,
+    required this.status,
+    required this.requests,
   });
 
-  factory AgentModel.fromJson(Map<String, dynamic> json) => AgentModel(
-        id: json['_id'],
-        name: json['fullname'],
-        email: json['email'],
-        phone: json['mobNo'],
-        image: json['image'],
-        status: json['status'] ?? false,
-      );
+  factory AgentModel.fromJson(Map<String, dynamic> json) {
+    return AgentModel(
+      id: json['_id'],
+      email: json['email'],
+      fullname: json['fullname'],
+      mobNo: json['mobNo'],
+      status: json['status'],
+      requests: List<String>.from(json['requests']),
+    );
+  }
 
-  Map<String, dynamic> toJson(AgentModel agent) => {
-        '_id': agent.id,
-        'fullname': agent.name,
-        'email': agent.email,
-        'mobNo': agent.phone,
-        'image': agent.image,
-        'status': agent.status,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.id;
+    data['email'] = this.email;
+    data['fullname'] = this.fullname;
+    data['mobNo'] = this.mobNo;
+    data['status'] = this.status;
+    data['requests'] = this.requests;
+    return data;
+  }
 }

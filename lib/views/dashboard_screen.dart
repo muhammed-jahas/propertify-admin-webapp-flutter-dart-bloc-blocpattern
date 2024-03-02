@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:propertify_webapp/blocs/bloc/agent_bloc.dart';
 import 'package:propertify_webapp/blocs/property_bloc/property_bloc.dart';
 import 'package:propertify_webapp/resources/components/custom_appbar.dart';
 import 'package:propertify_webapp/views/screen1.dart';
@@ -15,8 +16,9 @@ class DesktopDashboard extends StatefulWidget {
 class _DesktopDashboardState extends State<DesktopDashboard> {
   @override
   void initState() {
-    BlocProvider.of<PropertyBloc>(context).add(LoadPropertiesEvent());
     super.initState();
+    BlocProvider.of<PropertyBloc>(context).add(LoadPropertiesEvent());
+    BlocProvider.of<AgentBloc>(context).add(LoadAgentsEvent());
   }
 
   int _currentIndex = 0;

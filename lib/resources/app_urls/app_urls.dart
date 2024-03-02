@@ -2,7 +2,7 @@ class Appurls {
 
   //Base Url
   // static const String baseUrl = 'https://propertifyapp.online';
-  static const String baseUrl = 'http://10.4.3.252:3000';
+  static const String baseUrl = 'http://10.4.2.58:3000';
 
   //User Login
   static const String userLogin = '$baseUrl/api/user/loginUser';
@@ -36,4 +36,6 @@ class Appurls {
 
   //Approve Property
   static const String approveProperty =  '$baseUrl/api/admin/approveProperty';
+  //Get All Agents
+  static const String getAllAgents =  '$baseUrl/api/admin/getAllAgents';
 }

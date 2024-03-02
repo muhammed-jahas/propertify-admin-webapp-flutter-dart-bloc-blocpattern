@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:propertify_webapp/blocs/bloc/agent_bloc.dart';
 import 'package:propertify_webapp/blocs/property_bloc/property_bloc.dart';
 import 'package:propertify_webapp/resources/colors/app_colors.dart';
 import 'package:propertify_webapp/responsive/responsive_layout.dart';
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => PropertyBloc(),)
+        BlocProvider(create: (context) => PropertyBloc(),),
+        BlocProvider(create: (context) => AgentBloc(),)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
