@@ -114,10 +114,10 @@ flutter:
         - asset: assets/fonts/Gilroy-BoldItalic.woff
           weight: 600
           style: italic
-        - asset: assets/fonts/Gilroy-ExtraBold.woff
+        - asset: assets/fonts/Gilroy-Extrabold.woff
           weight: 700
           style: normal
-        - asset: assets/fonts/Gilroy-ExtraBoldItalic.woff
+        - asset: assets/fonts/Gilroy-ExtraboldItalic.woff
           weight: 700
           style: italic
         - asset: assets/fonts/Gilroy-Black.woff
